@@ -22,7 +22,7 @@ func Handler(_ context.Context) {
 	}()
 	defer func() {
 		if r := recover(); r != nil {
-			logger.Panic("logger.Panic", r)
+			logger.Panic("logger.Panic:", r)
 		}
 	}()
 	fmt.Println("DEBUG", "fmt.Println")
