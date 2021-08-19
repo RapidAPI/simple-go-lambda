@@ -17,12 +17,12 @@ func main() {
 func Handler(_ context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
-			print("recovered again", "\n")
+			print("print", "\n")
 		}
 	}()
 	defer func() {
 		if r := recover(); r != nil {
-			logger.Panic("recovered from ", r)
+			logger.Panic("logger.Panic", r)
 		}
 	}()
 	fmt.Println("DEBUG", "fmt.Println")
@@ -36,5 +36,5 @@ func Handler(_ context.Context) {
 	println("ERROR", "println")
 	logger.Println("DEBUG", "logger.Println")
 	logger.Printf("DEBUG:%s", "logger.Printf")
-	logger.Fatalln("logger.Fatalln")
+	logger.Panicf("logger.Panicf%s", "\n")
 }
