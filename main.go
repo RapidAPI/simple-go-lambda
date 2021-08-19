@@ -14,14 +14,23 @@ var (
 func main() {
 	lambda.Start(Handler)
 }
-func Handler(ctx context.Context) {
-
+func Handler(_ context.Context) {
+	defer func() {
+		if r := recover(); r != nil {
+			print("recovered again", "\n")
+		}
+	}()
+	defer func() {
+		if r := recover(); r != nil {
+			logger.Panic("recovered from ", r)
+		}
+	}()
 	fmt.Println("DEBUG", "fmt.Println")
 	fmt.Println("WARN", "fmt.Println")
 	fmt.Println("ERROR", "fmt.Println")
-	fmt.Printf("DEBUG %s", "fmt.Printf")
-	fmt.Printf("WARN %s", "fmt.Printf")
-	fmt.Printf("ERROR %s", "fmt.Printf")
+	fmt.Printf("DEBUG %s\n", "fmt.Printf")
+	fmt.Printf("WARN %s", "fmt.Printf\n")
+	fmt.Printf("ERROR %s", "fmt.Printf\n")
 	println("DEBUG", "println")
 	println("WARN", "println")
 	println("ERROR", "println")
